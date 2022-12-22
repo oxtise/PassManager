@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.sql.SQLException;
 
 public class PassManager {
-    public static String dirConfig = System.getProperty("user.home")+"/Documenti/PassManager/";
-    public static File file_config;
+    public static String dirConfig = System.getProperty("user.home")+"/Documenti/PassManager/"; //default path se non viene cambiata all'installazione
+    public static File file_config; //dirConfig + config
     public static File actualpath = new File(System.getProperty("user.dir")+"/path"); //File sulla cartella del programma per sapere dove si trova il file config
     public static String name;
     public static String hash;
@@ -63,7 +63,7 @@ public class PassManager {
         try {
             choice = Integer.parseInt(scan.nextLine());
         }catch (NumberFormatException e){
-            System.out.println("Formato errato. Inserire un numero tra le opzioni del menu.");
+            System.out.println("Formato errato. Devi scegliere tra le opzioni del menu (1-4)");
             mainMenu();
         }
         Data data = new Data();
