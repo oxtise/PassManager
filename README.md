@@ -89,4 +89,5 @@ public static String shiftEncrypt(String toBeEncrypted){
         return decrypted;
     }
 ```
+<br>
 The decryption uses the same principle, but instead of shifting upwards, it shifts the encrypted String downwards by the same amount to regain the original String.
