@@ -26,7 +26,7 @@ cd PassManager
 PassManager will ask you to create a mainkey the first time you execute it.
 If you enter the correct mainkey, you will be able to see in clear account.
 ## Crypt & Decrypt
-Mainkey is hashed with <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">SHA-512</a>.
+Mainkey is hashed in <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">SHA-512</a> with this method: 
 <br>
 ```java
 public static String encrypt(String input, String algorithm)
@@ -62,6 +62,31 @@ public static String encrypt(String input, String algorithm)
         }
     }
 ```
-The encryption used in this project is the [Ceasar Shift Cypher](https://en.wikipedia.org/wiki/Caesar_cipher). This encryption shifts the characters of a String up by a certain number of characters in the [ASCII](https://www.ascii-code.com/) alphabet.
+<br>
+The encryption used in this project to preserve accounts is the [Ceasar Shift Cypher](https://en.wikipedia.org/wiki/Caesar_cipher). This encryption shifts the characters of a String up by a certain number of characters in the [ASCII](https://www.ascii-code.com/) alphabet.
 
 The decryption uses the same principle, but instead of shifting upwards, it shifts the encrypted String downwards by the same amount to regain the original String.
+```java
+public static String shiftEncrypt(String toBeEncrypted){
+        char[] ch = toBeEncrypted.toCharArray(); //char array
+        int i = 0;
+        for(char c : ch){
+            c += 10; //shift up by charShift
+            ch[i] = c;
+            i++;
+        }
+        String encrypted = new String(ch); //switch back to String
+        return encrypted;
+    }
+    public static String shiftDecrypt(String toBeDecrypted){
+        char[] ch = toBeDecrypted.toCharArray(); //char array
+        int i = 0;
+        for(char c : ch){
+            c -= 10; //shift down by charShift
+            ch[i] = c;
+            i++;
+        }
+        String decrypted = new String(ch); //switch back to String
+        return decrypted;
+    }
+```
