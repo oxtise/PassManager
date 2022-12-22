@@ -63,7 +63,7 @@ public static String encrypt(String input, String algorithm)
     }
 ```
 <br>
-The encryption used in this project to preserve accounts is the [Ceasar Shift Cypher](https://en.wikipedia.org/wiki/Caesar_cipher). This encryption shifts the characters of a String up by a certain number of characters in the [ASCII](https://www.ascii-code.com/) alphabet.
+The encryption used in this project to preserve accounts is the <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Ceasar Shift Cypher</a>. This encryption shifts the characters of a String up by a certain number of characters in the <a href="https://www.ascii-code.com/">ASCII</a> alphabet.
 
 The decryption uses the same principle, but instead of shifting upwards, it shifts the encrypted String downwards by the same amount to regain the original String.
 ```java
