@@ -64,7 +64,7 @@ public static String encrypt(String input, String algorithm)
 ```
 <br>
 The encryption used in this project to preserve accounts is the <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Ceasar Shift Cypher</a>. This encryption shifts the characters of a String up by a certain number of characters in the <a href="https://www.ascii-code.com/">ASCII</a> alphabet.
-
+<br>
 ```java
 public static String shiftEncrypt(String toBeEncrypted){
         char[] ch = toBeEncrypted.toCharArray(); //char array
