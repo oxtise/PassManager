@@ -16,11 +16,10 @@ Clone the repository with:
 git clone https://github.com/oxtise/PassManager.git
 ```
 or download and decompress the zip file.<br>
-Change directory in PassManager:
+Change directory and execute PassManager.sh
 ```
 cd PassManager
 ```
-Execute PassManager.sh
 ```
 ./PassManager.sh
 ```
