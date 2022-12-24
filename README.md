@@ -7,7 +7,7 @@ PassManager will preserve your accounts <a href="#Crypt & Decrypt">crypted</a> i
 ### Windows:
 Download and decompress the zip file.
 Open command prompt in the current dir and type:
-```
+```batch
 java -cp ./out/production/PassManager/;./lib/sqlite-jdbc-3.36.0.3.jar com.oxtise.PassManager
 ```
 ### Linux:
