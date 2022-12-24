@@ -1,10 +1,9 @@
 package com.oxtise;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.sql.SQLException;
-
 public class PassManager {
     public static String dirConfig = System.getProperty("user.home")+"/Documenti/PassManager/"; //default path se non viene cambiata all'installazione
     public static File file_config; //dirConfig + config
@@ -25,6 +24,11 @@ public class PassManager {
     public static final String ANSI_CHECKMARK = "\u2713";
 
     public static void main(String[] args) {
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            try{
+                Runtime.getRuntime().exec("reg add HKCU\\Console /v VirtualTerminalLevel /t REG_DWORD /d 1");
+            }catch (IOException e){System.out.println(e.getMessage());}
+        }
         System.out.println(ANSI_BLUE+ANSI_REVERSED+"PassManager"+ANSI_RESET+"\n-----------------");
         FirstTime check = new FirstTime(); //Crea l'oggetto che controlla se il programma è mai stato aperto
         BufferedReader reader;
