@@ -7,12 +7,12 @@ PassManager will preserve your accounts <a href="#Crypt & Decrypt">crypted</a> i
 ### Windows:
 Download and decompress the zip file.
 Open command prompt in the current dir and type:
-```batch
+```bash
 java -cp ./out/production/PassManager/;./lib/sqlite-jdbc-3.36.0.3.jar com.oxtise.PassManager
 ```
 ### Linux:
 Clone the repository with:
-```shell
+```bash
 git clone https://github.com/oxtise/PassManager.git
 ```
 or download and decompress the zip file.<br>
@@ -20,7 +20,7 @@ Change directory and execute PassManager.sh
 ```bash
 cd PassManager
 ```
-```
+```bash
 ./PassManager.sh
 ```
 PassManager will ask you to create a mainkey the first time you execute it.
