@@ -12,12 +12,12 @@ java -cp ./out/production/PassManager/;./lib/sqlite-jdbc-3.36.0.3.jar com.oxtise
 ```
 ### Linux:
 Clone the repository with:
-```
+```shell
 git clone https://github.com/oxtise/PassManager.git
 ```
 or download and decompress the zip file.<br>
 Change directory and execute PassManager.sh
-```
+```bash
 cd PassManager
 ```
 ```
