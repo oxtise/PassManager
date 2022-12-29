@@ -8,20 +8,20 @@ PassManager will preserve your accounts <a href="#Crypt & Decrypt">crypted</a> i
 Download and decompress the zip file.
 Open command prompt in the current dir and type:
 ```bash
-java -cp ./out/production/PassManager/;./lib/sqlite-jdbc-3.36.0.3.jar com.oxtise.PassManager
+$ java -cp ./out/production/PassManager/;./lib/sqlite-jdbc-3.36.0.3.jar com.oxtise.PassManager
 ```
 ### Linux:
 Clone the repository with:
 ```bash
-git clone https://github.com/oxtise/PassManager.git
+$ git clone https://github.com/oxtise/PassManager.git
 ```
 or download and decompress the zip file.<br>
 Change directory and execute PassManager.sh
 ```bash
-cd PassManager
+$ cd PassManager
 ```
 ```bash
-./PassManager.sh
+$ ./PassManager.sh
 ```
 PassManager will ask you to create a mainkey the first time you execute it.
 If you enter the correct mainkey, you will be able to see in clear account.
