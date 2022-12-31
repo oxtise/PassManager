@@ -24,7 +24,7 @@ public class PassManager {
     public static final String ANSI_CHECKMARK = "\u2713";
 
     public static void main(String[] args) {
-        if (System.getProperty("os.name").startsWith("Windows")) {
+        if (System.getProperty("os.name").startsWith("Windows")) { //Active ANSI codes for windows 10
             try{
                 Runtime.getRuntime().exec("reg add HKCU\\Console /v VirtualTerminalLevel /t REG_DWORD /d 1");
             }catch (IOException e){System.out.println(e.getMessage());}
@@ -42,11 +42,19 @@ public class PassManager {
         } catch (IOException e) {   e.printStackTrace();}
         Console console = System.console();
         System.out.println("Bentornato "+ANSI_BLUE+name+ANSI_RESET+".");
-        while(!access) { //Login con la mainkey
+        int attempts = 0; //Tentativi massimi per il login = 3
+        while(!access && attempts<3) { //Login con la mainkey
             System.out.println("Inserisci la mainkey: ");
             pwd_hashed = Crypter.encrypt(String.valueOf(console.readPassword()), "SHA-512"); //ottengo l'hash della pwd inserita
             access = pwd_hashed.equals(hash); //confronto l'hash della pwd inserita con quella del file di configurazione
-            if(!access) System.out.println(ANSI_BOLD+ANSI_RED+"Password errata."+ANSI_RESET+" Riprova.");
+            if(!access) {
+                attempts++; //Se la password è sbagliata aggiorno il numero di tentativi
+                if(attempts<3) System.out.println(ANSI_BOLD+ANSI_RED+"Password errata. "+ANSI_RESET+(3-attempts)+" Tentativi rimanenti.");
+            }
+        }
+        if(attempts>=3){ //Se si inserisce 3 volte una password sbagliata chiudo il programma
+            System.out.println(ANSI_RED+"Tentativi esauriti. "+ANSI_RESET+"Chiusura in corso.");
+            System.exit(0);
         }
         System.out.print(ANSI_GREEN+"Accesso effettuato con successo. "+ANSI_CHECKMARK+ANSI_RESET+"\n---------------------------\n");
         mainMenu(); //lo mando al menu principale
