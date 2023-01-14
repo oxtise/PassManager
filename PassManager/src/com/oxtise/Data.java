@@ -44,7 +44,23 @@ public class Data {
             System.out.println(PassManager.ANSI_GREEN+PassManager.ANSI_CHECKMARK+" Operazione riuscita, account aggiunto."+PassManager.ANSI_RESET);
         } catch (SQLException e) { e.printStackTrace(); }
     }
+    public void readAccount_email(String email){ //Legge gli account con quella email
+        sql = "SELECT * FROM Account WHERE email='"+email+"'";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
+            while(rs.next()){
+                System.out.println("ID: "+rs.getInt("ID"));
+                System.out.println("Title: "+Crypter.shiftDecrypt(rs.getString("title")));
+                System.out.println("Username: "+Crypter.shiftDecrypt(rs.getString("username")));
+                System.out.println("E-mail: "+Crypter.shiftDecrypt(rs.getString("email")));
+                System.out.println("Password: "+Crypter.shiftDecrypt(rs.getString("pwd")));
+            }
+            stmt.close();
+            rs.close();
+        }catch (SQLException e){e.printStackTrace();}
+    }
     public void readAccount(String title) { //Leggi gli account con il titolo come parametro
         sql = "SELECT * FROM Account WHERE title='"+title+"'";
         try {

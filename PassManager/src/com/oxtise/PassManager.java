@@ -63,10 +63,11 @@ public class PassManager {
         System.out.println("\nMenu principale: ");
         System.out.println("[1] Stampa tutti gli account");
         System.out.println("[2] Stampa gli account di un sito specifico");
-        System.out.println("[3] Aggiungi un account");
-        System.out.println("[4] Modifica o elimina un account");
-        System.out.println("[5] Crea un backup dei dati");
-        System.out.println("[6] Ripristina un backup");
+        System.out.println("[3] Stampa gli account di una specifica email");
+        System.out.println("[4] Aggiungi un account");
+        System.out.println("[5] Modifica o elimina un account");
+        System.out.println("[6] Crea un backup dei dati");
+        System.out.println("[7] Ripristina un backup");
         System.out.println("[99] Elimina tutti gli account");
         System.out.println("[00] Chiudi il programma");
         cursor();
@@ -75,7 +76,7 @@ public class PassManager {
         try {
             choice = Integer.parseInt(scan.nextLine());
         }catch (NumberFormatException e){
-            System.out.println("Formato errato. Devi scegliere tra le opzioni del menu (1-4)");
+            System.out.println("Formato errato. Devi scegliere tra le opzioni del menu (1-7)");
             mainMenu();
         }
         Data data = new Data();
@@ -91,7 +92,18 @@ public class PassManager {
                 title = scan.nextLine();
                 data.readAccount(Crypter.shiftEncrypt(title.toLowerCase()));
                 break;
-            case 3: //MENU PRINCIPALE: aggiungi un account
+            case 3:
+                System.out.print("-------------------\n");
+                System.out.println("Inserisci l'email da cui cercare gli account.");
+                cursor();
+                do{
+                    email = scan.nextLine();
+                    if(!(email.contains("@")&&email.contains(".")))
+                        System.out.println("Inserisci un email corretta.");
+                } while(!(email.contains("@")&&email.contains("."))); //Controlla se l'email è stata inserita  correttamente
+                data.readAccount_email(Crypter.shiftEncrypt(email)); //Metodo che stampa tutti gli account, con parametro l'email (criptata)
+                break;
+            case 4: //MENU PRINCIPALE: aggiungi un account
                 System.out.println("-------------------");
                 System.out.print("Titolo del sito: ");
                 title = scan.nextLine();
@@ -107,7 +119,7 @@ public class PassManager {
                 Account account = new Account(Crypter.shiftEncrypt(title).toLowerCase(),Crypter.shiftEncrypt(username),Crypter.shiftEncrypt(email),Crypter.shiftEncrypt(pwd));
                 data.addAccount(account);//aggiungi account con dati criptati al database
                 break;
-            case 4://MENU PRINCIPALE: modifica o elimina un account
+            case 5://MENU PRINCIPALE: modifica o elimina un account
                 System.out.println("-------------------");
                 System.out.print("Inserisci ID dell'account da modificare: \n");
                 System.out.println("Se non lo sai, lascia in bianco e seleziona 2 dal menu principale.");
@@ -152,7 +164,7 @@ public class PassManager {
                     }
                 }
                 break;
-            case 5: //MENU PRINCIPALE: Crea un backup dei dati
+            case 6: //MENU PRINCIPALE: Crea un backup dei dati
                 System.out.println("Creazione backup in corso...");
                 LocalDate todaysdate = LocalDate.now();
                 if(Security.createBackup(todaysdate)){
@@ -161,7 +173,7 @@ public class PassManager {
                     System.out.println(ANSI_RED+"x Errore, creazione del backup fallita: "+ANSI_RESET);
                 }
                 break;
-            case 6: //MENU PRINCIPALE: Ripristina un backup
+            case 7: //MENU PRINCIPALE: Ripristina un backup
                 System.out.println("Inserisci il percorso del database");
                 PassManager.cursor();
                 String database_path = scan.next();
