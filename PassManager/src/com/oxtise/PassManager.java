@@ -11,24 +11,28 @@ public class PassManager {
     public static String name;
     public static String hash;
     /*ansi code text color*/
-    public static final String ANSI_RESET = "\u001B[0m"; //resetta il colore originale
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-    public static final String ANSI_BOLD = "\033[0;1m";
-    public static final String ANSI_REVERSED = "\u001b[7m";
-    public static final String ANSI_CHECKMARK = "\u2713";
+    public static String ANSI_RESET = "\u001B[0m"; //resetta il colore originale
+    public static String ANSI_RED = "\u001B[31m";
+    public static String ANSI_GREEN = "\u001B[32m";
+    public static String ANSI_YELLOW = "\u001B[33m";
+    public static String ANSI_BLUE = "\u001B[34m";
+    public static String ANSI_PURPLE = "\u001B[35m";
+    public static String ANSI_CYAN = "\u001B[36m";
+    public static String ANSI_WHITE = "\u001B[37m";
+    public static String ANSI_BOLD = "\033[0;1m";
+    public static String ANSI_REVERSED = "\u001b[7m";
+    public static String ANSI_CHECKMARK = "\u2713";
 
     public static void main(String[] args) {
-        if (System.getProperty("os.name").startsWith("Windows")) { //Active ANSI codes for windows 10
+        if (System.getProperty("os.name").startsWith("Windows")) { //Disactive ANSI codes for Windows
+            setAnsiOff();
+            /*
             try{
                 Runtime.getRuntime().exec("reg add HKCU\\Console /v VirtualTerminalLevel /t REG_DWORD /d 1");
             }catch (IOException e){System.out.println(e.getMessage());}
+            */
         }
+
         System.out.println(ANSI_BLUE+ANSI_REVERSED+"PassManager"+ANSI_RESET+"\n-----------------");
         FirstTime check = new FirstTime(); //Crea l'oggetto che controlla se il programma è mai stato aperto
         BufferedReader reader;
@@ -52,13 +56,15 @@ public class PassManager {
                 if(attempts<3) System.out.println(ANSI_BOLD+ANSI_RED+"Password errata. "+ANSI_RESET+(3-attempts)+" Tentativi rimanenti.");
             }
         }
-        if(attempts>=3){ //Se si inserisce 3 volte una password sbagliata chiudo il programma
+        if(attempts == 3){ //Se si inserisce 3 volte una password sbagliata chiudo il programma
             System.out.println(ANSI_RED+"Tentativi esauriti. "+ANSI_RESET+"Chiusura in corso.");
             System.exit(0);
         }
         System.out.print(ANSI_GREEN+"Accesso effettuato con successo. "+ANSI_CHECKMARK+ANSI_RESET+"\n---------------------------\n");
         mainMenu(); //lo mando al menu principale
     }
+    
+
     private static void mainMenu(){
         System.out.println("\nMenu principale: ");
         System.out.println("[1] Stampa tutti gli account");
@@ -228,6 +234,22 @@ public class PassManager {
 
     public static void cursor(){
         System.out.print(ANSI_CYAN+">>>"+ANSI_RESET);
+    }
+    private static void setAnsiOff() {
+        /*
+        Metodo Per cancellare i codici ansi e non utilizzare i colori in windows
+         */
+        ANSI_RESET = "";
+        ANSI_RED = "";
+        ANSI_GREEN = "";
+        ANSI_YELLOW = "";
+        ANSI_BLUE = "";
+        ANSI_PURPLE = "";
+        ANSI_CYAN = "";
+        ANSI_WHITE = "";
+        ANSI_BOLD = "";
+        ANSI_REVERSED = "";
+        ANSI_CHECKMARK = "";
     }
     public static void exitProgram(Data data){
         try {
